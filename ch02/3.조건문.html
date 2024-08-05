@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>3.조건문</title>
+     <!--
+        날짜 : 2024/08/05
+        이름 : 황수빈
+        내용 : 자바스크립트 조건문 실습
+    -->
+</head>
+<body>
+    <h3>조건문</h3>
+
+    <h4>if</h4>
+        <script>
+            const num1 = 1;
+            const num2 = 2;
+
+            if(num1 < num2){
+                document.write('num1은 num2보다 작다.<br>');
+            }
+
+            if(num1 > 0){
+                if(num2 > 1){
+                    document.write('num1은 0보다 크고 num2는 1보다 크다.<br>');
+                }
+            }
+
+            if(num>0&&num2>1){
+                document.write('num1은 0보다 크고 그리고 num2는 1보다 크다.<br>');
+
+            }
+        </script>
+    <h4>if ~ else</h4>
+        <script>
+            let var1 = 1;
+            let var2 = 2;
+        
+            if(var1 > var2){
+                document.write('var1은 var2보다 크다.<br>');
+            }else{
+                document.write('var1은 var2보다 작다.<br>');
+            }
+
+
+        </script>
+    <h4>if ~ else if ~ else</h4>
+    
+    <h4>switch</h4>
+        <script>
+            let inputscore = prompt('점수 입력');
+            document.write('입력 점수:' + score + '<br>');
+
+            // 문자열 => 숫자
+            let score = parseInt(inputscore);
+            let result = parseInt(score/10);
+    
+            switch(result){
+                case 9:
+                    document.write('A입니다.<br>');
+                    break;
+                case 8:
+                    document.write('B입니다.<br>');
+                    break;
+                case 7:
+                    document.write('C입니다.<br>');
+                    break;
+                case 6:
+                    document.write('D입니다.<br>');
+                    break;
+                default :
+                    document.write('F입니다.<br>');
+                    break;
+                }
+
+        </script>    
+
+</body>
+</html>

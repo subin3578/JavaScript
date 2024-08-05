@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>4.반복문</title>
+         <!--
+        날짜 : 2024/08/05
+        이름 : 황수빈
+        내용 : 자바스크립트 조건문 실습
+    -->
+</head>
+<body>
+    <h3>4.반복문</h3>
+
+    <h4>for</h4>
+        <script>
+            for(let i = 0; i <= 5 ; i++){
+                document.write('i = '+ i +'<br>');
+            }
+            let sum =0;
+            for(let i = 0 ; i <= 10 ; i++){
+                sum += i ;
+            }
+            document.write('1부터 10까지의 합: ' +sum);
+
+            // 1부터 10까지의 짝수합
+            let sum2 = 0; 
+            for(let i = 0; i<=10 ; i++){
+                if(i%2===0){
+                    sum2 += i;
+                }
+            }
+            document.write('<br>1부터 10까지 짝수의 합'+sum2+'<br>');
+            
+            for(let i = 1 ; i <= 7 ; i ++){
+                    document.write(' ');
+                for(let j = 1 ; j<=i; j++){
+                    document.write('*');
+                }
+                document.write('<br>');
+            }
+        </script>
+    <h4>while</h4>
+        <script>
+            //while
+            let total = 0;
+            let k = 1;
+            while(k<=10){
+                if(k%2 == 0){
+                    total += k;
+                }
+                k++;
+            }
+            document.write('1부터 10까지 짝수 합: '+total+ '<br>');
+
+            //do-while
+
+            let oddSum = 0;
+            let j = 1;
+            do {
+                if(j%2==1){
+                    oddSum += j;
+                }
+                j++;
+            }while(j <= 10);
+            document.write('1부터 10까지 홀수의 합: '+oddSum+'<br>');
+
+
+            // break
+            let num=1;
+
+            while(true){
+                if(num % 5 == 0 && num%7 == 0){
+                    break;
+                }
+
+                num++;
+            }
+            document.write('5와 7의 최소공배수 : '+ num + '<br>');
+
+            //continue
+            let tot =0;
+            for(let i=1;i<=10;i++){
+                if(i%2==1){
+                    continue;
+                }
+                tot += i;
+            }
+            document.write('1부터 10까지 짝수의 합: '+ tot + '<br>');
+        </script>
+
+    <h4>구구단</h4>
+    <div id="gugudanTable"></div>
+
+    <script>
+        // 테이블 요소 생성
+        let table = document.createElement("table");
+        table.border = "1";  // 테두리 설정
+
+        // 구구단 표 생성 (1단부터 9단까지)
+        for (let i = 2; i <= 9; i++) {
+            // 행 생성
+            let row = table.insertRow();
+
+            for (let j = 1; j <= 9; j++) {
+                // 셀 생성
+                let cell = row.insertCell();
+                // 셀에 구구단 결과 삽입
+                
+                cell.innerHTML = `${i} x ${j} = ${i * j}`;
+            }
+        }
+
+        // 생성한 테이블을 페이지의 특정 위치에 추가
+        document.getElementById("gugudanTable").appendChild(table);
+    </script>
+    
+
+</body>
+</html>
