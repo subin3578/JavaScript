@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">배열
+arr[0]: 1
+arr[3]: 4arr[0]: 1
+arr[1]: 2
+arr[2]: 3
+arr[3]: 4
+arr[4]: 5
+arr[0]: 1
+arr[1]: 2
+arr[2]: 3
+arr[3]: 4
+arr[4]: 5
+1
+2
+3
+4
+5
+<head>
+    <meta charset="UTF-8">
+    <title>5.배열</title>
+    <!--
+        날짜 : 2024/08/05
+        이름 : 황수빈
+        내용 : 자바스크립트 배열 실습
+    -->
+</head>
+
+<body>
+    <h3>배열</h3>
+    <script>
+
+        const arr = [1,2,3,4,5];
+
+        document.write('arr[0]: '+ arr[0]+'<br>');
+        document.write('arr[3]: '+ arr[3]+'<>');
+        
+        for(let i =0;i<arr.length;i++){
+            document.write('arr['+i+']: '+ arr[i]+'<br>');
+        }
+
+        //for -in : 배열 인덱스 참조 반복문
+        for(let i in arr){
+            document.write('arr['+i+']: '+ arr[i] + '<br>');
+        }
+
+        //for -of : 배열 원소 참조 반복문
+        for(let e of arr){
+            document.write(e +'<br>')
+
+        }
+    
+        // 2차원 배열
+        const arr2d =[[1,2,3],
+                      [4,5,6],
+                      [7,8,9]];
+
+        for (let arr of arr2d){
+            for (let n of arr){
+                document.write(n+', ')
+            }
+        }
+    </script>
+
+
+
+</body>
+</html>
