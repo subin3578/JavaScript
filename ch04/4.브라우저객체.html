@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>4.브라우저 객체</title>
+        <!--window screen navigator-->
+    </head>
+    <body>
+        <h3>4.브라우저 객체 모델</h3>
+        <h4>window 객체</h4>
+        <script>
+            // window 객체 - 브라우저 객체, 최상위 객체
+            console.log(window);
+            // 브라우저 크기
+            window.document.write('innerWidth:' +window.innerWidth+ '<br>');
+            window.document.write('innerHeight:' +window.innerHeight+ '<br>');
+            // 새창띄우기
+            window.open('./1.객체.html','객체예제','width=600 height=500');
+            // 브라우저 로컬 저장소
+            window.localStorage.setItem('name','김유신');
+            // 브라우저 세션 저장소
+            window.SessionStorage.setItem('name','김춘추');
+
+        
+        </script>
+        <h4>screen 객체</h4>
+        <script>
+            document.write('화면 너비: ' + screen.width + '<br>');
+            document.write('화면 높이: ' + screen.height + '<br>');
+            document.write('화면 너비(작업표시줄 제외): ' + screen.availWidth + '<br>');
+            document.write('화면 높이(작업표시줄 제외): ' + screen.availHeight + '<br>');
+        </script>
+
+        <h4>navigator 객체</h4>
+        <script>
+            console.log(navigator);
+
+            document.write('브라우저 코드명 : '+navigator.appCodeName+ '<br>');
+            document.write('브라우저 코드명 : '+navigator.appCodeName+ '<br>');
+            document.write('브라우저 코드명 : '+navigator.appCodeName+ '<br>');
+            document.write('브라우저 코드명 : '+navigator.appCodeName+ '<br>');
+            document.write('브라우저 코드명 : '+navigator.appCodeName+ '<br>');
+        </script>
+        <h4>location 객체</h4>
+    </body>
+</html>
