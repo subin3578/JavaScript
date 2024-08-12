@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h3>2.Promise</h3>
+    
+    <script>
+        // promise 객체 생성 (생성코드)
+
+        const result = true;
+        const promise = new Promise ((resolve, reject)=>{
+            if(result){
+                resolve('promise success ...');
+            }else{
+                reject('promise failed ...')
+            }
+        })
+
+        // promise 객체 사용 (소비코드)
+        promise
+            .then((message)=>{
+                // resolve() 호출
+                console.log(message);
+            })
+            .catch((message)=>{
+                // reject() 호출
+                console.log(message);
+            })
+            .finally(()=>{
+                console.log('finally...');
+            });
+
+        function step1(){
+            // 제작코드
+            return new Promise((resolve, reject)=>{
+
+                setTimeout(()=>{
+                    resolve('step 1...');
+                },1000);
+            });
+        }
+
+        function step2(txt){
+
+            console.log(txt);
+            return new Promise((resolve, reject)=>{
+                
+                setTimeout(()=>{
+                    resolve('step 2...');
+                },3000);
+            });
+        }
+
+        function step3(txt){
+
+            console.log(txt);
+            return new Promise((resolve, reject)=>{
+                
+                setTimeout(()=>{
+                    resolve('step 3...');
+                },2000);
+            });
+        }
+        // 소비코드
+        step1()
+            .then((txt)=>step2(txt))
+            .then((txt)=>step3(txt))
+            .then((txt)=> {
+            console.log(txt)
+        });
+
+        // async 와 await를 이용한 비동기 처리
+        async function steps(){
+            const txt1 = await step1();
+            const txt2 = await step2(txt1);
+            const txt3 = await step3(txt2);
+            console.log(txt);
+        }
+
+        // 커피 만들기 예제
+
+        window.onload = function(){
+            const inputText = document.getElementsByName('coffee')[0];
+            const btnOrder = document.getElementById('btnOrder');
+            const message = document.getElementById('message');
+
+            btnOrder.onclick = () => {
+                const coffee = inputText.value;
+                message.innerText = `${coffee} 제조 시작 ...`;
+                
+                makeCoffee(coffee);
+            }
+ 
+            function makeCoffee(coffee){
+                boilWater(coffee)
+                    .then((coffee)=>brewCoffee(coffee))
+                    .then((coffee)=>pourCoffee(coffee))
+                    .then((coffee)=>donecoffee(coffee));
+
+            }
+            async function makeCoffee2(coffee){
+                const result1 = await boilWater(coffee);
+                const result2 = await brewCoffee(result1);
+                const result3 = await pourCoffee(result2);
+                const result4 = await doneCoffee(result3);
+            }
+            
+            function boilWater(coffee) {
+                message.innerText = `${coffee}를 위해 물을 끓입니다.`;
+                
+                return new Promise((resolve, reject)=>{
+                    setTimeout(()=>{
+                        resolve(coffee);
+                    },2000);
+                });
+            }
+            
+            function brewCoffee(coffee){
+                message.innerText = `${coffee}를 위해 물을 내립니다.`;
+                
+                return new Promise((resolve, reject)=>{
+                    setTimeout(()=>{
+                        resolve(coffee);
+                    },3000);
+                });
+
+            }
+            function pourCoffee(coffee){
+                message.innerText = `${coffee}를 위해 컵에 따릅니다.`;
+                
+                return new Promise((resolve, reject)=>{
+                    setTimeout(()=>{
+                        resolve(coffee);
+                    },3000);
+                });
+            
+
+            }
+            function donecoffee(coffee){
+                message.innerText = `${coffee}가 완성되었습니다.`;
+                
+                return new Promise((resolve, reject)=>{
+                    setTimeout(()=>{
+                        resolve(coffee);
+                    },1000);
+                });
+            }
+        }
+
+    </script>
+
+    <input type ="text" name = "coffee">
+    <input type= "button" id ="btnOrder" value = "주문하기">
+    <h4 id ="message">준비 중 ...</h4>
+</body>
+</html>
