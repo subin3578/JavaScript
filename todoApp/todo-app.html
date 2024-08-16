@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List</title>
+    <style>
+        #wrapper {
+            width: 100%;
+            height: auto;
+            align-items: center;
+            display: flex;
+            flex-direction: column;
+        }
+    
+        header {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+            background-color: rgb(240, 249, 252);
+        }
+
+        main {
+            height: 1000px;
+        }
+        #inputsection {
+            display: flex;
+        }
+        #addbtn {
+            margin-left: 5px;
+            margin-top: 2px;
+            background-image: url('img/add.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color: white;
+            border: none;
+            width: 43px;
+            height: 43px;
+            cursor: pointer;
+        }
+        #todo-input {
+            width: 700px;
+            height: 25px;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        #todo-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        #todo-list li {
+            width: 775px;
+            padding: 11px;
+            display: flex;
+            margin : 5px 0;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+        }
+        #todo-list li button {
+            background-image: url('img/delete.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+    </style>
+
+    <script>
+        // 오늘 날짜를 구하는 함수
+        function getTodayDate() {
+            const today = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            return today.toLocaleDateString('ko-KO', options); 
+            // "2024년 8월 16일" 형식으로 날짜 반환
+        }
+
+        // 날짜를 페이지에 표시하는 함수
+        function displayTodayDate() {
+            const dateElement = document.getElementById('today-date');
+            dateElement.textContent = getTodayDate(); 
+            // 날짜를 h3 태그에 표시
+        }
+
+        // 로컬 스토리지에서 할 일 목록 가져오기
+        let todos = JSON.parse(localStorage.getItem('todos')) || [];
+
+        // 할 일 목록을 페이지에 업데이트하는 함수
+        function updateTodoList() {
+            const todoList = document.getElementById('todo-list');
+            todoList.innerHTML = '';
+
+            todos.forEach((todo, index) => {
+                const li = document.createElement('li');
+                li.textContent = `${index + 1}. ${todo}`; 
+                // 번호와 할 일을 함께 표시
+
+                const deleteButton = document.createElement('button');
+
+                deleteButton.onclick = () => deleteTodo(index);
+                li.appendChild(deleteButton);
+                todoList.appendChild(li);
+            });
+        }
+
+        // 새로운 할 일을 추가하는 함수
+        function addTodo() {
+            const todoInput = document.getElementById('todo-input');
+            const todoText = todoInput.value.trim();
+
+            if (todoText !== '') {
+                todos.push(todoText);
+                localStorage.setItem('todos', JSON.stringify(todos));
+                updateTodoList();
+                todoInput.value = '';
+            }
+        }
+
+        // 할 일을 삭제하는 함수
+        function deleteTodo(index) {
+            todos.splice(index, 1);
+            localStorage.setItem('todos', JSON.stringify(todos));
+            updateTodoList();
+        }
+
+        // 페이지가 로드될 때 실행할 초기화 함수
+        window.onload = function() {
+            displayTodayDate();  // 오늘 날짜 표시
+            updateTodoList();    // 할 일 목록 업데이트
+        }
+    </script>
+
+</head>
+<body>
+    <div id="wrapper">
+        <header>
+            <h1>To-Do List</h1>
+        </header>
+
+        <main>
+            <h3 id="today-date"></h3>
+            <h3>오늘의 할 일을 작성해 보세요.</h3>
+
+            <div id="inputsection">
+                <input type="text" id="todo-input" placeholder="할 일을 입력하세요.">
+                <button id="addbtn" onclick="addTodo()"></button>
+            </div>
+            <ul id="todo-list"></ul>
+        </main>
+    </div>
+</body>
+</html>
